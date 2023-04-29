@@ -1,0 +1,63 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model PasseiosComCaes.ViewModels.DashboardViewModel
+
+<h1 class="display-4 fw-normal">User Dashboard</h1>
+<a type="button" class="btn btn-primary" asp-area="" asp-controller="Club" asp-action="Criar">Criar Club</a>
+<a type="button" class="btn btn-primary" asp-area="" asp-controller="Passeio" asp-action="Criar">Criar Race</a>
+<div class="album py-5 bg-light">
+    <div class="container">
+        <h2 class="display-4 fw-normal">Meus Passeios</h2>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            @foreach (var item in Model.Passeios)
+            {
+                <div class="col-md-4">
+                    <div class="card mb-4 box-shadow">
+                        <img class="card-img-top" src="@item.Imagem" width="100%" height="225" alt="Card image cap">
+                        <div class="card-body">
+                            <p class="card-text">@item.Titulo</p>
+                            <p class="card-text">@item.Descricao</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <a type="btn btn-success" asp-controller="Club" asp-action="Detalhes" asp-route-id="@item.Id"
+                                       class="btn btn-sm btn-outline-secondary">View</a>
+                                    @if (User.Identity.IsAuthenticated)
+                                    {
+                                        <a asp-controller="Passeio" asp-action="Editar" asp-route-id="@item.Id" class="btn btn-sm btn-outline-secondary">Edit</a>
+                                        <a asp-controller="Passeio" asp-action="Deletar" asp-route-id="@item.Id" class="btn btn-sm btn-outline-secondary">Delete</a>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <h2 class="display-4 fw-normal">Seus Clubs</h2>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            @foreach (var item in Model.Clubs)
+            {
+                <div class="col-md-4">
+                    <div class="card mb-4 box-shadow">
+                        <img class="card-img-top" src="@item.Imagem" width="100%" height="225" alt="Card image cap">
+                        <div class="card-body">
+                            <p class="card-text">@item.Nome</p>
+                            <p class="card-text">@item.Descricao</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <a type="btn btn-success" asp-controller="Club" asp-action="Detalhes" asp-route-id="@item.Id"
+                                       class="btn btn-sm btn-outline-secondary">View</a>
+                                    @if (User.Identity.IsAuthenticated)
+                                    {
+                                        <a asp-controller="Club" asp-action="Editar" asp-route-id="@item.Id" class="btn btn-sm btn-outline-secondary">Edit</a>
+                                        <a asp-controller="Club" asp-action="Deletar" asp-route-id="@item.Id" class="btn btn-sm btn-outline-secondary">Delete</a>
+                                    }
+                                </div>
+                                <small class="text-muted">@item.TamanhoDoClub</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

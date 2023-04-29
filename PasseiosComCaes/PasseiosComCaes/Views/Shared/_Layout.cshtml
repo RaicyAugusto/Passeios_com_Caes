@@ -1,0 +1,86 @@
+﻿@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<AppUser> SignInManager
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - PasseiosComCaes</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/PasseiosComCaes.styles.css" asp-append-version="true" />
+    <script src="https://kit.fontawesome.com/8aa18c8793.js" crossorigin="anonymous"></script>
+</head>
+<body class="text-bg-dark">
+  <header class="p-3 text-bg-dark container-fluid">
+    <div>
+      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+        <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                <a class="navbar-brand logo-text" asp-controller="Home" asp-action="Index">PasseiosAuAu</a>
+        </a>
+          <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+              <li><a asp-controller="Home" asp-action="Index" class="nav-link px-2 text-secondary">Home</a></li>
+              <li><a asp-controller="Club" asp-action="Index" class="nav-link px-2 text-white">Encontrar Clubs</a></li>
+              <li><a asp-controller="Passeio" asp-action="Index" class="nav-link px-2 text-white">Encontrar Passeio</a></li>
+            </ul>
+          <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+              <input type="search" class="form-control form-control-gray" placeholder="Pesquisar..." aria-label="Pesquisar">
+          </form>
+          @if(User.Identity.IsAuthenticated)
+          {
+              <div class="dropdown text-end">
+                  <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                      <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
+                  </a>
+                  <ul class="dropdown-menu text-small">
+                      <li><a asp-controller="User" asp-action="Index" class="dropdown-item">Perfil</a></li>
+                      <li><a asp-controller="Dashboard" asp-action="Index" class="dropdown-item">Dashboard</a></li>
+                      <li><a asp-controller="Conta" asp-action="Logout" class="dropdown-item">Sair</a></li>
+                  </ul>
+              </div>
+          }
+          else
+          {
+              <div class="text-end">
+                  <a asp-controller="Conta" asp-action="Login" type="button" class="btn btn-outline-light me-2">Entrar</a>
+                  <a asp-controller="Conta" asp-action="Registrar" type="button" class="btn btn-warning">Registrar-se</a>
+              </div>
+          }
+      </div>
+    </div>
+  </header> 
+
+  <div class="container">
+    <main role="main" class="pb-3">
+        @RenderBody()
+    </main>
+  </div>
+
+
+  <footer class="text-bg-dark">
+      <div class="container">
+          <div class="row">
+          <div class="col-12 col-md-3">
+              <a class="navbar-brand logo-text" asp-area="" asp-controller="Home" asp-action="Index">PasseiosAuAu</a>
+          </div>
+          <div class="row">
+              <ul class="nav justify-content-center border-bottom border-dark pb-3 mb-3">
+                  <li><a asp-controller="Home" asp-action="Index" class="nav-link px-2 text-secondary">Home</a></li>
+                  <li><a asp-controller="Club" asp-action="Index" class="nav-link px-2 text-white">Encontrar Clubs</a></li>
+                  <li><a asp-controller="Passeio" asp-action="Index" class="nav-link px-2 text-white">Encontrar Passeio</a></li>
+              </ul>
+          </div>
+          <p class="text-center text-body-secondary">&copy; 2023 PasseiosAuAu,</p>
+        </div>
+      </div>
+  </footer>
+  
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

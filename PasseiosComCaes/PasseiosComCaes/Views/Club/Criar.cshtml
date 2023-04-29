@@ -1,0 +1,80 @@
+﻿@using PasseiosComCaes.Data.Enum
+@model PasseiosComCaes.ViewModels.CriarClubViewModel
+
+
+
+<div class="navbar-container">
+</div>
+<div class="main-container">
+    <section class="space-sm">
+        <div class="container">
+            <div class="row mb-5">
+                <!--end of col-->
+            </div>
+            <!--end of row-->
+            <div class="row flex-md-row card card-md">
+                <div class="card-body bg-secondary">
+                    <div class="text-center mb-5">
+                        <h1 class="h2 mb-2">Create your own race</h1>
+                        <span>Challenge the runners in your community</span>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="col-6 col-lg-5">
+                            <form method="post" asp-action="Criar" enctype="multipart/form-data">
+                                <input type="hidden" id="AppUserId" name="AppUserId" asp-for="AppUserId"/>
+                                <div class="form-row form-group">
+                                    <label asp-for="Nome">Nome</label>
+                                    <input asp-for="Nome" class="form-control" placeholder="Nome">
+                                    <span asp-validation-for="Nome" class="text-danger"></span>
+                                </div>
+                                <div class="form-row form-group">
+                                    <label asp-for="Descricao">Descrição</label>
+                                    <input asp-for="Descricao" class="form-control" placeholder="Descrição">
+                                    <span asp-validation-for="Descricao" class="text-danger"></span>
+                                </div>
+                                <div class="form-row form-group">
+                                    <label asp-for="Imagem">Imagem</label>
+                                    <input asp-for="Imagem" class="form-control" placeholder="Imagem">
+                                    <span asp-validation-for="Imagem" class="text-danger"></span>
+                                </div>
+                                <div class="form-row form-group">
+                                    <label asp-for="TamanhoDoClub">Tamanho Do Clube</label>
+                                    <select asp-for="TamanhoDoClub" asp-items="@Html.GetEnumSelectList<TamanhoDoClub>()" class="form-control">
+                                        <option>--Selecionar--</option>
+                                    </select>
+                                </div>
+                                <div class="form-row form-group">
+                                    <label asp-for="Endereco.Bairro">Bairro</label>
+                                    <input asp-for="Endereco.Bairro" class="form-control" placeholder="Bairro">
+                                    <span asp-validation-for="Endereco.Bairro" class="text-danger"></span>
+                                </div>
+                                <div class="form-row form-group">
+                                    <label asp-for="Endereco.Cidade">Cidade</label>
+                                    <input asp-for="Endereco.Cidade" class="form-control" placeholder="Cidade">
+                                    <span asp-validation-for="Endereco.Cidade" class="text-danger"></span>
+                                </div>
+                                <div class="form-row form-group">
+                                    <label asp-for="Endereco.Estado">Estado</label>
+                                    <input asp-for="Endereco.Estado" class="form-control" placeholder="Estado">
+                                    <span asp-validation-for="Endereco.Estado" class="text-danger"></span>
+                                </div>
+                                <div class="form-row form-group">
+                                    <label asp-for="Endereco.Cep">Cep</label>
+                                    <input asp-for="Endereco.Cep" class="form-control" placeholder="Cep">
+                                    <span asp-validation-for="Endereco.Cep" class="text-danger"></span>
+                                </div>
+                                <div class="col">
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div> 
+                </div>
+            </div>
+            <!--end of container-->
+        </div>
+     </section>
+    <!--end of section-->
+</div>
+
+<!--end of container-->

@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Club>   
+
+<div class="py-5 text-bg-dark">
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+        @foreach (var club in Model)
+        {
+            
+            <div class="col">
+                <div class="card border-primary">
+                    <img src="@club.Imagem" class="card-img-top" alt="...">
+                    <div class="card-body text-bg-dark">
+                        <h5 class="card-title text-color-green">@club.Nome</h5>
+                        <p class="card-text text-color-green">@club.Descricao</p>
+                    </div>
+                </div>
+                
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                        <a type="button" class="btn btn-outline-success m-sm-1" asp-controller="Club" asp-action="Detalhes" asp-route-id="@club.Id">Detalhes</a>
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("admin"))
+                        {
+                            <a type="button" class="btn-sm btn-outline-warning m-sm-1" asp-controller="Club" asp-action="Editar" asp-route-id="@club.Id">Editar</a>
+                            <a type="button" class="btn-sm btn-outline-danger m-sm-1" asp-controller="Club" asp-action="Deletar" asp-route-id="@club.Id">Deletar</a>
+                        }
+                    </div>
+                    <small class="text-muted">Tamanho do Club: @club.TamanhoDoClub</small>
+                </div>
+            </div>
+        }
+    </div>
+</div>

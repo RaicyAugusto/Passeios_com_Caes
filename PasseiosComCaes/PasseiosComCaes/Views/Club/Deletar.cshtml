@@ -1,0 +1,59 @@
+﻿@using PasseiosComCaes.Data.Enum
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model Club
+
+
+
+
+
+
+
+<form method="post" asp-action="Deletar" enctype="multipart/form-data">
+    <div class="form-row form-group">
+        <label asp-for="Nome">Nome</label>
+        <input asp-for="Nome" class="form-control" placeholder="Nome">
+        <span asp-validation-for="Nome" class="text-danger"></span>
+    </div>
+    <div class="form-row form-group">
+        <label asp-for="Descricao">Descrição</label>
+        <input asp-for="Descricao" class="form-control" placeholder="Descrição">
+        <span asp-validation-for="Descricao" class="text-danger"></span>
+    </div>
+    <div class="form-row form-group">
+        <label asp-for="Imagem">Imagem</label>
+        <input asp-for="Imagem" class="form-control" placeholder="Imagem">
+        <span asp-validation-for="Imagem" class="text-danger"></span>
+    </div>
+    <div class="form-row form-group">
+        <label asp-for="TamanhoDoClub">Tamanho Do Clube</label>
+        <select asp-for="TamanhoDoClub" asp-items="@Html.GetEnumSelectList<TamanhoDoClub>()" class="form-control">
+            <option>--Selecionar--</option>
+        </select>
+    </div>
+    <div class="form-row form-group">
+        <label asp-for="Endereco.Bairro">Bairro</label>
+        <input asp-for="Endereco.Bairro" class="form-control" placeholder="Bairro">
+        <span asp-validation-for="Endereco.Bairro" class="text-danger"></span>
+    </div>
+    <div class="form-row form-group">
+        <label asp-for="Endereco.Cidade">Cidade</label>
+        <input asp-for="Endereco.Cidade" class="form-control" placeholder="Cidade">
+        <span asp-validation-for="Endereco.Cidade" class="text-danger"></span>
+    </div>
+    <div class="form-row form-group">
+        <label asp-for="Endereco.Estado">Estado</label>
+        <input asp-for="Endereco.Estado" class="form-control" placeholder="Estado">
+        <span asp-validation-for="Endereco.Estado" class="text-danger"></span>
+    </div>
+    <div class="form-row form-group">
+        <label asp-for="Endereco.Cep">Cep</label>
+        <input asp-for="Endereco.Cep" class="form-control" placeholder="Cep">
+        <span asp-validation-for="Endereco.Cep" class="text-danger"></span>
+    </div>
+</form>
+<div  class="form-group">
+    <form action="Deletar" method="post">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Confirm" class="btn btn-danger float-right mt-3" />
+    </form>
+</div>
